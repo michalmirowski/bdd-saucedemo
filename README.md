@@ -15,7 +15,7 @@ git clone <repo-url>
 ```
 
 ```bash
-cd bdd-saucedemo
+cd behave-bdd-swaglabs
 ```
 
 Activate virtual environment:
