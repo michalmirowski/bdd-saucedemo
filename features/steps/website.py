@@ -17,12 +17,18 @@ def step_impl(context):
     driver.find_element(By.ID, "login-button").click()
 
 
-@given('app state is reset')
+@given('app is reset')
 def step_impl(context):
     driver = context.driver
     driver.find_element(By.ID, "react-burger-menu-btn").click()
     driver.find_element(By.ID, "reset_sidebar_link").click()
     driver.find_element(By.ID, "react-burger-cross-btn").click()
+
+
+@given('user is on "All Items" page')
+def step_impl(context):
+    driver = context.driver
+    driver.get('https://www.saucedemo.com/inventory.html')
 
 
 @when('user clicks cart icon')
@@ -36,6 +42,7 @@ def step_impl(context):
     driver = context.driver
     output_text = driver.find_element(By.CSS_SELECTOR, ".title").text
     expected_text = 'YOUR CART'
+
     assert output_text == expected_text
 
 
@@ -48,27 +55,54 @@ def step_impl(context):
     assert no_item_shown
 
 
-@when('user add {number} items to cart')
+@when('user adds {number} item(s) to cart')
 def step_impl(context, number):
     driver = context.driver
-    # driver.find_element(By.CSS_SELECTOR, ".inventory_item:nth-child(1) .inventory_item_description .pricebar > button").click()
-    item_num = 0
-    while item_num < int(number):
-        selector = ".inventory_item:nth-child(" + str(item_num + 1) + ") .inventory_item_description .pricebar > button"
+    counter = 0
+    while counter < int(number):
+        selector = ".inventory_item:nth-child(" + str(counter + 1) + ") .inventory_item_description .pricebar > button"
         driver.find_element(By.CSS_SELECTOR,
                             selector).click()
-        item_num += 1
+        counter += 1
 
 
-@then('there is {number} item(s)')
+@then('in the cart is {number} item(s)')
 def step_impl(context, number):
-    num = int(number)
     driver = context.driver
+    output_number = len(driver.find_elements(By.CSS_SELECTOR, ".cart_item"))
+    expected_number = int(number)
 
-    items_in_cart = len(driver.find_elements(By.CSS_SELECTOR, ".cart_item"))
-    assert items_in_cart == num
+    assert output_number == expected_number
 
     # reset app state for next test cases
     driver.find_element(By.ID, "react-burger-menu-btn").click()
     driver.find_element(By.ID, "reset_sidebar_link").click()
     driver.find_element(By.ID, "react-burger-cross-btn").click()
+
+
+@given('cart with some items is opened')
+def step_impl(context):
+    context.execute_steps(u'''
+        Given user is on "All Items" page
+        When user adds 1 item(s) to cart
+         And user clicks cart icon
+         Then cart is opened
+    ''')
+
+
+@when('user clicks "Remove" button')
+def step_impl(context):
+    driver = context.driver
+    remove_button = driver.find_element(By.CSS_SELECTOR,
+                        ".cart_list > div:last-child .cart_item_label .item_pricebar > button")
+    context.response = remove_button.get_attribute("id")
+    remove_button.click()
+
+@then('item is removed')
+def step_impl(context):
+    driver = context.driver
+    wait = WebDriverWait(driver, 10)
+    selector = "#" + context.response
+    removed_item_not_shown = wait.until(ec.invisibility_of_element_located((By.CSS_SELECTOR, selector)))
+
+    assert removed_item_not_shown
