@@ -43,16 +43,9 @@ Run the tests:
 behave
 ```
 
-## User Stories and Implementation
+## Project structure
 
-Acceptance criteria for User Stories were written in [Gherkin language](https://behave.readthedocs.io/en/stable/philosophy.html#the-gherkin-language): 
-- Scenario: (explain scenario). 
-  - Given (how things begin), 
-  - when (action taken), 
-  - then (outcome of taking action).
-
-Feature files are grouped by business functionality and step definitions by domains so the feature directory has the following structure:
-
+The feature directory has the following structure:
 ```
 features/
 features/login.feature
@@ -64,8 +57,18 @@ features/steps/
 features/steps/login.py
 features/steps/store.py
 ```
+Feature files are grouped by business functionality and step definitions by domain. 
 
-| Title             | User Story                                                                                                               | Acceptance criteria       | Step implementation    |
+## User Stories and Implementation
+Acceptance criteria for User Stories were written in [Gherkin language](https://behave.readthedocs.io/en/stable/philosophy.html#the-gherkin-language):
+- Scenario: (explain scenario).
+  - Given (how things begin),
+  - when (action taken),
+  - then (outcome of taking action).
+
+They were implemented in appropriate feature files as stated in the table:
+
+| Title             | User Story                                                                                                               | Acceptance criteria       | Step definition        |
 |-------------------|--------------------------------------------------------------------------------------------------------------------------|---------------------------|------------------------|
 | Log into the app  | As a user, <br />I want to be able to log in with registered data <br />so that I can access the app.                    | feature/login.feature     | feature/steps/login.py |                                                                                                              |                      |                                                   |
 | Sort inventory    | As a user, <br />I want to be able to sort items on their names and prices <br />so that I can find what I need quicker. | feature/inventory.feature | feature/steps/store.py |                                                                                                                     |                      |                                                   |
