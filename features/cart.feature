@@ -1,7 +1,6 @@
-Feature: Managing a cart
+Feature: Manage a cart
   As a user
   I want to view the shopping cart, add and remove items
-  In order to control my order
 
   Background: Preparing the app
     Given user is logged in

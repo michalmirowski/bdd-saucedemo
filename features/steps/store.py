@@ -94,9 +94,10 @@ def step_impl(context):
 def step_impl(context):
     driver = context.driver
     remove_button = driver.find_element(By.CSS_SELECTOR,
-                        ".cart_list > div:last-child .cart_item_label .item_pricebar > button")
+                                        ".cart_list > div:last-child .cart_item_label .item_pricebar > button")
     context.response = remove_button.get_attribute("id")
     remove_button.click()
+
 
 @then('item is removed')
 def step_impl(context):
@@ -106,3 +107,41 @@ def step_impl(context):
     removed_item_not_shown = wait.until(ec.invisibility_of_element_located((By.CSS_SELECTOR, selector)))
 
     assert removed_item_not_shown
+
+
+@when('user expands sort dropdown')
+def step_impl(context):
+    driver = context.driver
+    driver.find_element(By.CSS_SELECTOR, ".product_sort_container").click()
+
+
+@when('user chooses {sort_option} option')
+def step_impl(context, sort_option):
+    driver = context.driver
+    sort_option_dict = {"Names (A to Z)": "1", "Names (Z to A)": "2", "Price (low to high)": "3", "Price (high to low)": "4"}
+    selector = ".product_sort_container > option:nth-child(" + sort_option_dict[sort_option] + ")"
+    driver.find_element(By.CSS_SELECTOR, selector).click()
+
+
+@then('items are displayed in {order_type}')
+def step_impl(context, order_type):
+    driver = context.driver
+    if order_type in ("alphabetical order", "reversed alphabetical order"):
+        # create list of item names
+        item_list = [item.text for item in driver.find_elements(By.CSS_SELECTOR, ".inventory_item_name")]
+        # assertion depends on chosen sort option
+        if order_type == "alphabetical order":
+            assert item_list == sorted(item_list)
+        elif order_type == "reversed alphabetical order":
+            assert item_list == sorted(item_list, reverse=True)
+
+    elif order_type in ("order by price (low to high)", "order by price (high to low)"):
+        # create list of item prices
+        item_list = [item.text for item in driver.find_elements(By.CSS_SELECTOR, ".inventory_item_price")]
+        # convert prices to numbers
+        item_list = [float(item[1:]) for item in item_list]
+        # assertion depends on chosen sort option
+        if order_type == "order by price (low to high)":
+            assert item_list == sorted(item_list)
+        elif order_type == "order by price (high to low)":
+            assert item_list == sorted(item_list, reverse=True)
