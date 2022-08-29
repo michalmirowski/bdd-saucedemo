@@ -19,7 +19,7 @@ Feature: Log into the app
     When user enters <username> as Username
     And user enters <password> as Password
     And user clicks "Login" button
-    Then notification <notification> is thrown
+    Then login warning is thrown: <notification>
     And user is not logged into the app
     Examples:
       | username      |  | password     |  | notification                                                              |
