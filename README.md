@@ -3,7 +3,9 @@
 ## Overview
 
 The project presents behaviour-driven development (BDD) tests in Python, written
-using [Behave](https://behave.readthedocs.io/en/stable/index.html).
+using [Behave](https://behave.readthedocs.io/en/stable/index.html). 
+
+Other technologies used: [Selenium Webdriver](https://www.selenium.dev/documentation/webdriver/), [WebDriver Manager](https://github.com/SergeyPirogov/webdriver_manager).
 
 Tested app is a demo store [SwagLabs](https://www.saucedemo.com/).
 
