@@ -15,7 +15,7 @@ Tested app is a demo store [SwagLabs](https://www.saucedemo.com/).
 
 ## User stories and test scenarios
 
-Exemplary user stories covers main functionalities of the app. Based on them were written test scenarios
+Exemplary user stories cover main functionalities of the app. Based on them were written test scenarios
 in [Gherkin language](https://behave.readthedocs.io/en/stable/philosophy.html#the-gherkin-language):
 
 - Scenario: (explain scenario).
@@ -34,7 +34,7 @@ Scenarios can be found in the feature files as per the table:
 
 ## Project structure
 
-Feature files are arranged by business functionality (e.g. `cart.feature` contains all tests related to cart functionality) while step definitions by domain (e.g. `login.py` contains all actions that are done on login screen).
+Feature files are arranged by a business functionality (e.g. `cart.feature` contains all tests related to cart functionality) while step definitions by domain (e.g. `login.py` contains all actions that are done on a login screen).
 
 The feature directory has the following structure:
 
