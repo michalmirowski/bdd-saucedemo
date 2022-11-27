@@ -9,9 +9,13 @@ Other technologies used: [Selenium WebDriver](https://www.selenium.dev/documenta
 
 Tested app is a demo store [SwagLabs](https://www.saucedemo.com/).
 
-## User Stories and Test Scenarios
+## Requirements
+* Python 3.10 or higher
+* Optional: Git, PyCharm or VSCode with extension that supports BDD
 
-Based on User Stories I've written test scenarios
+## User stories and test scenarios
+
+Exemplary user stories covers main functionalities of the app. Based on them were written test scenarios
 in [Gherkin language](https://behave.readthedocs.io/en/stable/philosophy.html#the-gherkin-language):
 
 - Scenario: (explain scenario).
@@ -21,17 +25,18 @@ in [Gherkin language](https://behave.readthedocs.io/en/stable/philosophy.html#th
 
 Scenarios can be found in the feature files as per the table:
 
-| Title             | User Story                                                                                            | Test scenarios            | Step definition        |
+| Title             | User story                                                                                            | Test scenarios            | Step definition        |
 |-------------------|-------------------------------------------------------------------------------------------------------|---------------------------|------------------------|
 | Log into the app  | As a user, <br />I want to be able to log in with registered data <br />so that I can access the app. | feature/login.feature     | feature/steps/login.py |                                                                                                              |                      |                                                   |
 | Sort inventory    | As a user, <br />I want to be able to sort items by their names and prices.                           | feature/inventory.feature | feature/steps/store.py |                                                                                                                     |                      |                                                   |
 | Manage a cart     | As a user, <br />I want to view the shopping cart, add and remove items.                              | feature/cart.feature      | feature/steps/store.py |
 | Checkout an order | As a user, <br />I want to checkout my order<br /> so that I can complete shopping.                   | feature/checkout.feature  | feature/steps/store.py |
 
-## Project Structure
+## Project structure
 
-I've decided to arrange feature files by business functionality while step definitions by domain. The feature directory
-has the following structure:
+Feature files are arranged by business functionality (e.g. `cart.feature` contains all tests related to cart functionality) while step definitions by domain (e.g. `login.py` contains all actions that are done on login screen).
+
+The feature directory has the following structure:
 
 ```
 features/
@@ -46,8 +51,6 @@ features/steps/store.py
 ```
 
 ## Setup
-
-Make sure you have the latest version of Python installed.
 
 Clone repository:
 
