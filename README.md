@@ -11,7 +11,7 @@ Tested app is a demo store [SwagLabs](https://www.saucedemo.com/).
 
 ## Requirements
 * Python 3.10 or higher
-* Optional: Git, PyCharm or VSCode with extension that supports BDD
+* Optional: Git, PyCharm or VSCode with an extension that supports BDD
 
 ## User stories and test scenarios
 
@@ -34,7 +34,7 @@ Scenarios can be found in the feature files as per the table:
 
 ## Project structure
 
-Feature files are arranged by a business functionality (e.g. `cart.feature` contains all tests related to cart functionality) while step definitions by domain (e.g. `login.py` contains all actions that are done on a login screen).
+Feature files are arranged by a business functionality (e.g. `cart.feature` contains all tests related to a cart) while step definitions by a domain, because they are shared by different tests (e.g. `store.py` contains actions that a user can take when logged in the store).
 
 The feature directory has the following structure:
 
@@ -52,7 +52,7 @@ features/steps/store.py
 
 ## Setup
 
-Clone repository:
+Clone this repository:
 
 ```bash
 git clone <repo-url>
@@ -62,7 +62,7 @@ git clone <repo-url>
 cd behave-bdd-swaglabs
 ```
 
-Activate virtual environment:
+Activate a virtual environment:
 
 ```bash
 python -m venv venv
@@ -78,7 +78,7 @@ Install dependencies:
 pip install -r requirements.txt
 ```
 
-Run the tests:
+Run tests:
 
 ```bash
 behave
