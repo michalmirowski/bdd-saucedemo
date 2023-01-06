@@ -1,0 +1,4 @@
+login.feature
+inventory.feature
+cart.feature
+checkout.feature

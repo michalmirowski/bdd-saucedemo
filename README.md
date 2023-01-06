@@ -36,6 +36,8 @@ Scenarios can be found in the feature files as per the table:
 
 Feature files are arranged by a business functionality (e.g. `cart.feature` contains all tests related to a cart) while step definitions by a domain, because they are shared by different tests (e.g. `store.py` contains actions that a user can take when logged in the store).
 
+`features_list.txt` defines the scope and sequence of the tests.
+
 The feature directory has the following structure:
 
 ```
@@ -45,6 +47,7 @@ features/inventory.feature
 features/cart.feature
 features/checkout.feature
 features/environment.py
+features/features_list.txt
 features/steps/
 features/steps/login.py
 features/steps/store.py
@@ -78,8 +81,14 @@ Install dependencies:
 pip install -r requirements.txt
 ```
 
-Run tests:
+Run all tests:
 
 ```bash
 behave
+```
+
+Or run tests in a given order and scope:
+
+```bash
+behave @features\features_list.txt
 ```
