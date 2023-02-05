@@ -15,8 +15,8 @@ Tested app is a demo store [SwagLabs](https://www.saucedemo.com/).
 
 ## User stories and test scenarios
 
-Exemplary user stories cover main functionalities of the app. Based on them were written test scenarios
-in [Gherkin language](https://behave.readthedocs.io/en/stable/philosophy.html#the-gherkin-language):
+Exemplary user stories cover the main functionalities of the app. Based on them, test scenarios were written 
+in the [Gherkin language](https://behave.readthedocs.io/en/stable/philosophy.html#the-gherkin-language):
 
 - Scenario: (explain scenario).
     - Given (how things begin),
